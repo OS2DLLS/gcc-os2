@@ -439,7 +439,7 @@ gen_system_or_optlink_suffix (tree decl, tree id)
   char *new_str, *p;
   gcc_assert (TREE_CODE (decl) == FUNCTION_DECL);
 
-  p = new_str = XALLOCAVEC (char, 1 + strlen (old_str));
+  p = new_str = XALLOCAVEC (char, 2 + strlen (old_str));
   *p++ = '*';
   sprintf (p, "%s", old_str);
   return get_identifier (new_str);
