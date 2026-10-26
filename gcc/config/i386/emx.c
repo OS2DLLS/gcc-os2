@@ -724,9 +724,14 @@ i386_emx_file_end (void)
                   continue;
                 }
                */
+#ifdef __EMX__
+	      /* komh: This causes ICE in
+		 langhooks.c:lhd_set_decl_assembler_name () on EMX target if
+		 __declspec(dllexport) is used.  */
               if (!q->asm_name)
                 q->asm_name = q->exported_name ? q->exported_name
                   : IDENTIFIER_POINTER (DECL_ASSEMBLER_NAME (decl));
+#endif
             }
           if (!q->asm_name)
             q->asm_name = q->exported_name ? q->exported_name : q->name;

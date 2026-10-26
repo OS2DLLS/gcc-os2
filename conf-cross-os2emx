@@ -1,0 +1,33 @@
+#! /bin/sh
+
+PREFIXROOT=${PREFIXROOT:=$HOME}
+
+prefix=${OS2EMX_PREFIX:-${PREFIXROOT%/}/opt/os2emx}
+target=i686-pc-os2-emx
+
+export CFLAGS="-DEMX -O2 -D_FORTIFY_SOURCE=0"
+export CXXFLAGS="-DEMX -O2 -D_FORTIFY_SOURCE=0"
+
+opts="
+    --prefix=$prefix
+    --target=$target
+    --with-sysroot=$prefix/$target
+    --with-gcc-major-version-only
+    --with-gnu-as
+    --with-as=$prefix/bin/$target-as
+    --with-ld=$prefix/bin/$target-ld
+    --enable-languages=c,c++
+    --enable-threads
+    --enable-checking=release
+    --disable-bootstrap
+    --disable-nls
+    --disable-ssp
+    --disable-libquadmath
+    --disable-libgomp
+    --disable-multilib
+    --disable-lto
+    --disable-shared
+    --disable-symvers
+"
+
+if test -n "$GCC_PREREQS_DIR"; then

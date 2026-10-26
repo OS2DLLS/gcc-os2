@@ -1,0 +1,11 @@
+#!/bin/sh
+
+make all-gcc \
+     all-target-libgcc \
+     all-target-libstdc++-v3 \
+     "$@" || exit 1
+
+make install-gcc \
+     install-target-libgcc \
+     install-target-libstdc++-v3 \
+     "$@"
